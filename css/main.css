@@ -1,0 +1,44 @@
+/* main.css: Add and override styles */
+
+
+
+body {
+	background: #222222;
+	margin: 0px;
+}
+
+.navbar {
+	margin-bottom: 0px;
+	border: none;
+}
+.header .navbar {
+	padding-right: 25px;	
+}
+
+text {
+  font-size: 16px;
+}
+
+a { cursor: pointer }
+
+.nav li {
+    text-align: left;
+    font-weight: 200;
+    font-size: 16px;
+} 
+.dropdown-menu li {
+    text-align: left;
+    font-size: 15px;
+}
+.navbar-collapse {
+    text-align: left;
+}
+.feature {
+position: relative;
+margin: 0px -20px 0px -20px; 
+}
+
+.spacer {
+    margin-bottom: 40px; 
+}
+

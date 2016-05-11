@@ -1,0 +1,100 @@
+.dc-data-count small {
+  font-size: 16px;
+}
+.container-fluid {
+  padding-left: 20px;
+  padding-right: 20px;
+  background : white;
+}
+
+text {
+  font-size: 16px;
+}
+
+a { cursor: pointer }
+
+.dc-chart path.line {
+    fill: none;
+	stroke: black;
+    stroke-width: 1px;
+}
+
+.dc-chart circle.dot {
+    stroke: none;
+	fill: black;
+	shape-rendering: crispEdges;
+}
+
+.dc-chart .axis path,
+.dc-chart .axis line {
+    fill: none;
+    stroke: steelblue;
+    shape-rendering: crispEdges;
+}
+
+#dc-row-chart .axis line {
+    fill: none;
+    stroke: lightgray;
+    shape-rendering: crispEdges;
+}
+
+#dc-row-chart .axis path {
+    fill: none; 
+    stroke: gray;
+}
+
+#dc-surface-chart .axis line {
+    fill: none;
+    stroke: lightgray;
+    shape-rendering: crispEdges;
+}
+
+#dc-surface-chart .axis path {
+    fill: none; 
+    stroke: gray;
+}
+
+#dc-license-chart .axis line {
+    fill: none;
+    stroke: lightgray;
+    shape-rendering: crispEdges;
+}
+
+#dc-license-chart .axis path {
+    fill: none; 
+    stroke: gray;
+}
+
+.dc-chart .row .selected {
+	stroke: steelblue;
+	stroke-width: 3px;
+}
+
+.dc-chart g.row text {
+	fill: black;
+}
+
+#dc-line-chart {
+	max-width: 100%;
+	margin-left: 0%;
+	margin-right: 0%;
+	position: center;
+}
+
+svg {
+  position: relative;
+}
+
+.d3-tip {
+	line-height: 1;
+	font-weight: regular;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	border-radius: 2px;
+	pointer-events: none;
+}
+
+.dc-chart .axis text{
+  font-size: 12px;
+}

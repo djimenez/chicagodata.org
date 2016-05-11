@@ -1,0 +1,41 @@
+.home {
+	text-align: center;
+}
+.home-row {
+    padding: 2em 3em 2em 3em;
+}
+
+.thumbnail {
+	margin-top: 5px;
+	padding: 20px;
+}
+
+h1 {
+    color: darkslategray;    
+} 
+h5 {
+    color: #aaa;
+}
+.index-format {
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 20px; 
+    }    
+.chart-wrapper .chart-title-dash {
+  border: 1px solid #c8c9c7;
+    background-color: #FBFBFB;
+  text-align: center;
+  color: #3D4A57;
+    font-family: sans-serif;
+  font-size: 22px;
+    font-weight: 500;
+  padding: 7px 10px 4px;
+}
+.chart-stage {
+    border: 1px solid #c8c9c7;
+}
+.chart-notes {
+    border: 1px solid #c8c9c7; 
+    text-align: center;
+    }

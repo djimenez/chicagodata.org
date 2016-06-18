@@ -1,12 +1,9 @@
-	var json_url = "https://data.cityofchicago.org/resource/";
-	var json_where = "$where=date_service_request_was_received>'2010-12-31T12:59:59'&$limit=500000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; 
+	var json_url = "../data/311/vacant-monthly.php";
 //$where=position_title not like '%25ADVISOR%25'	//$where=date>'2015-08-01T12:00:00'
 	//$select=date, community_area, primary_type, latitude, longitude&	
     
-    var resource = "yama-9had.json?";
-
 	$("select#area_select").val("14-Albany Park");
-	drawChart(json_url+resource+json_where+"&community_area='14'");
+	drawChart(json_url+"?community_area=14");
 	
 	$('#area_select').change(function(){
 	    $('#typeDown').prop('selectedIndex',0);
@@ -19,12 +16,12 @@
 		if(sValue == 0){
 			$("title").html("All Vacant/Abandoned Buildings");
 			$(".chart-title").html("All");
-			drawChart(json_url+resource+json_where);
+			drawChart(json_url);
 		}
 		else{
 			$("title").html(sText + " Vacant/Abandoned Building Map");
 			$(".chart-title").html(sText);
-			drawChart(json_url+resource+json_where+"&community_area=" + sValue);
+			drawChart(json_url+"?community_area=" + sValue);
 		}
 	});
 
@@ -74,10 +71,13 @@
 			});
 		
 			//console.log(data);
+			/* data is pre-filtered
 			var filterData = data.filter(function(d) { 
 				if(d.date_service_request_was_received < endDate && d.date_service_request_was_received > startDate || d.date_service_request_was_received == endDate || d.date_service_request_was_received == startDate)
 					return d;
 			});
+			*/
+			var filterData = data;
 		
 			// Use the crossfilter force.
 		    var cf = crossfilter(filterData);

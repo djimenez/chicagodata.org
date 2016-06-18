@@ -1,12 +1,10 @@
-	var json_url = "https://data.cityofchicago.org/resource/";
-	var json_where = "$where=status not like '%25Dup%25' AND creation_date>'2010-12-31T12:59:59'&$limit=500000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; 
+	var json_url = "../data/311/potholes-monthly.php";
 //$where=position_title not like '%25ADVISOR%25'	//$where=date>'2015-08-01T12:00:00'
 	//$select=date, community_area, primary_type, latitude, longitude&	
     
-    var resource = "787j-mys9.json?";
 
 	$("select#area_select").val("14-Albany Park");
-	drawChart(json_url+resource+json_where+"&community_area='14'");
+	drawChart(json_url+"?community_area=14");
 	
 	$('#area_select').change(function(){
 	    $('#typeDown').prop('selectedIndex',0);
@@ -19,12 +17,12 @@
 		if(sValue == 0){
 			$("title").html("All Pot Holes Reported");
 			$(".chart-title").html("All");
-			drawChart(json_url+resource+json_where);
+			drawChart(json_url);
 		}
 		else{
 			$("title").html(sText + " Pot Holes Reported");
 			$(".chart-title").html(sText);
-			drawChart(json_url+resource+json_where+"&community_area=" + sValue);
+			drawChart(json_url+"?community_area=" + sValue);
 		}
 	});
 
@@ -50,7 +48,7 @@
 		//gets today and up to 120 months ago
 		var startDate = d3.time.month.offset(new Date(), -121);
 		var endDate = d3.time.month(new Date());
-		
+
 			//var startDate = d3.time.day.offset(new Date("2012/01/2"), -250);
 			//var endDate = d3.time.day(new Date("2012/07/01"));
 	
@@ -70,10 +68,13 @@
 			});
 		
 			//console.log(data);
+			/* data is pre-filtered
 			var filterData = data.filter(function(d) { 
 				if(d.creation_date < endDate && d.creation_date > startDate || d.creation_date == endDate || d.creation_date == startDate)
 					return d;
 			});
+			*/
+			var filterData = data;
 		
 			// Use the crossfilter force.
 		    var cf = crossfilter(filterData);

@@ -26,15 +26,12 @@
 
 	//var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 	//    g = svg.append("g").attr("class", "leaflet-zoom-hide");	
-	var json_url = "https://data.cityofchicago.org/resource/";
-	var json_where = "$where=status not like '%25Dup%25'&$limit=500000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; 
+	var json_url = "../data/311/graffiti-map.php";
 //$where=position_title not like '%25ADVISOR%25'	//$where=date>'2015-08-01T12:00:00'
 	//$select=date, community_area, primary_type, latitude, longitude&	
     
-    var resource = "cdmx-wzbz.json?";
-
 	$("select#area_select").val("14-Albany Park");
-	drawChart(json_url+resource+json_where+"&community_area='14'");
+	drawChart(json_url+"?community_area=14");
 	
 	$('#area_select').change(function(){
 	    $('#typeDown').prop('selectedIndex',0);
@@ -92,10 +89,13 @@
 			});
 		
 			//console.log(data);
+			/* data is pre-filtered
 			var filterData = data.filter(function(d) { 
 				if(d.creation_date < endDate && d.creation_date > startDate || d.creation_date == endDate || d.creation_date == startDate)
 					return d;
 			});
+			*/
+			var filterData = data;
 		
 			// Use the crossfilter force.
 		    var cf = crossfilter(filterData);

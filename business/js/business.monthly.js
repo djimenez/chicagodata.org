@@ -1,12 +1,9 @@
-var json_url = "https://data.cityofchicago.org/resource/";
-var json_where = "$where=license_start_date>'2010-01-01T12:00:00'&$limit=500000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; 
+var json_url = "../data/business/monthly.php";
 //$where=position_title not like '%25ADVISOR%25'	//$where=date>'2015-08-01T12:00:00'
 //$select=date, community_area, primary_type, latitude, longitude&	
 
-var resource = "xqx5-8hwx.json?";
-
 $("select#area_select").val("48-48th Ward");
-drawChart(json_url+resource+json_where+"&ward='48'");
+drawChart(json_url+"?ward=48");
 
 $('#area_select').change(function(){
     $('#typeDown').prop('selectedIndex',0);
@@ -19,12 +16,12 @@ $('#area_select').on('change',function(e){
     if(sValue == 0){
         $("title").html("All Business Licenses");
         $(".chart-title").html("All");
-        drawChart(json_url+resource+json_where);
+        drawChart(json_url);
     }
     else{
         $("title").html(sText + " Business Licenses");
         $(".chart-title").html(sText);
-        drawChart(json_url+resource+json_where+"&ward=" + sValue);
+        drawChart(json_url+"?ward=" + sValue);
     }
 });
 
@@ -73,10 +70,13 @@ function drawChart(url){
         });
 
         //console.log(data);
+        /* data is pre-filtered
         var filterData = data.filter(function(d) { 
             if(d.license_start_date < endDate && d.license_start_date > startDate || d.license_start_date == endDate || d.license_start_date == startDate)
                 return d;
         });
+        */
+        var filterData = data;
 
         // Use the crossfilter force.
         var cf = crossfilter(filterData);

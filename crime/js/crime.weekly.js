@@ -1,8 +1,7 @@
-var json_url = "https://data.cityofchicago.org/resource/6zsd-86xi.json?";
-var json_where = "$select=date, community_area, primary_type, location_description&$where=year>2005 &$limit=5000000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; //$where=date>'2015-08-01T12:00:00'
+var json_url = "../data/crime/weekly.php";
 
 $("select#area_select").val("14-Albany Park");
-drawChart(json_url+json_where+"&community_area='14'");
+drawChart(json_url+"?community_area=14");
 
 $('#area_select').change(function(){
     $('#typeDown').prop('selectedIndex',0);
@@ -19,12 +18,12 @@ $('#area_select').on('change',function(e){
 	if(sValue == 0){
 		$("title").html("All Crimes per Month");
 		$(".chart-title").html("All");
-		drawChart(json_url+json_where);
+		drawChart(json_url);
 	}
 	else{
 		$("title").html(sText + " Crimes per Week");
 		$(".chart-title").html(sText);
-		drawChart(json_url+json_where+"&community_area=" + sValue);
+		drawChart(json_url+"?community_area=" + sValue);
 	}
 });
 

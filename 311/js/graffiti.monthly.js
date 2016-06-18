@@ -1,8 +1,7 @@
-var json_url = "https://data.cityofchicago.org/resource/cdmx-wzbz.json?";
-var json_where = "$where=status not like '%25Dup%25' AND creation_date>'2010-12-31T12:59:59'&$limit=50000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; //$where=date>'2015-08-01T12:00:00'
+var json_url = "../data/311/graffiti-monthly.php";
 
 $("select#area_select").val("14-Albany Park");
-drawChart(json_url+json_where+"&community_area='14'");
+drawChart(json_url+"?community_area=14");
 
 $('#area_select').change(function(){
     $('#typeDown').prop('selectedIndex',0);
@@ -19,12 +18,12 @@ $('#area_select').on('change',function(e){
 	if(sValue == 0){
 		$("title").html("All Graffiti Removal Requests per Month");
 		$(".chart-title").html("All");
-		drawChart(json_url+json_where);
+		drawChart(json_url);
 	}
 	else{
 		$("title").html(sText + " Graffiti Removal Requests per Month");
 		$(".chart-title").html(sText);
-		drawChart(json_url+json_where+"&community_area=" + sValue);
+		drawChart(json_url+"?community_area=" + sValue);
 	}
 });
 
@@ -73,10 +72,14 @@ function drawChart(url){
         });
 
         //console.log(data);
+        /* data is pre-filtered
         var filterData = data.filter(function(d) { 
             if(d.creation_date < endDate && d.creation_date > startDate || d.creation_date == endDate || d.creation_date == startDate)
                 return d;
         });
+        */
+        var filterData = data;
+        
 		// Use the crossfilter force.
 	    var cf = crossfilter(filterData);
 	

@@ -27,12 +27,11 @@
 
 	//var svg = d3.select(map.getPanes().overlayPane).append("svg"),
 	//    g = svg.append("g").attr("class", "leaflet-zoom-hide");	
-	var json_url = "https://data.cityofchicago.org/resource/6zsd-86xi.json?";
-	var json_where = "$where=year>2014&$limit=500000&$$app_token=BWWPzJPWah0RdMqRqbWEw53eb"; 	//$where=date>'2015-08-01T12:00:00'
+	var json_url = "../data/crime/map.php";
 	//$select=date, community_area, primary_type, latitude, longitude&	
 
 	$("select#area_select").val("14-Albany Park");
-	drawChart(json_url+json_where+"&community_area='14'");
+	drawChart(json_url+"?community_area=14");
 	
 	$('#area_select').change(function(){
 	    $('#typeDown').prop('selectedIndex',0);
@@ -49,12 +48,12 @@
 		if(sValue == 0){
 			$("title").html("All Crimes per Day");
 			$(".chart-title").html("All");
-			drawChart(json_url+json_where);
+			drawChart(json_url);
 		}
 		else{
 			$("title").html(sText + " Crime Map");
 			$(".chart-title").html(sText);
-			drawChart(json_url+json_where+"&community_area=" + sValue);
+			drawChart(json_url+"?community_area=" + sValue);
 		}
 	});
 
@@ -107,10 +106,13 @@
 			});
 		
 			//console.log(data);
+			/* data is now pre-filtered
 			var filterData = data.filter(function(d) { 
 				if(d.date < endDate && d.date > startDate || d.date == endDate || d.date == startDate)
 					return d;
 			});
+			*/
+			var filterData = data;
 		
 			// Use the crossfilter force.
 		    var cf = crossfilter(filterData);
